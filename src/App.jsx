@@ -79,10 +79,11 @@ const App = () => {
         },
   ]);
 
-  // const addZombieFighter = (newZombieFighter) => {
-  //   const newZombieFightersArray = [...zombieFighters, newZombieFighter];
-  //   setZombieFighters(newZombieFightersArray);
-  // };
+  const handleAddFighter = (newTeamMember) => {
+    const newTeamArray = [...team, newTeamMember];
+    setTeam(newTeamArray);
+  };
+  
 
   return (
   <>
@@ -96,7 +97,7 @@ const App = () => {
           <li> Price: ${zombieFighter.price} </li>
           <li> Strength: {zombieFighter.strength} </li>
           <li> Agility: {zombieFighter.agility} </li>
-          <button onClick = {() => addZombieFighter({newzombieFighter})}>Add Zombie Fighter</button>
+          <button onClick = {() => handleAddFighter({zombieFighter})}>Add Fighter to Team</button>
         </p>
       ))}
   </>
