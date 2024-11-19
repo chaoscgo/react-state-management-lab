@@ -6,6 +6,8 @@ const App = () => {
 
   const [money, setMoney] = useState(100);
 
+  const [totalStrength, setTotalStrength] = useState(0);
+
   const [zombieFighters, setZombieFighters] = useState([
        {
           name: 'Survivor',
@@ -104,8 +106,23 @@ const App = () => {
       <p>Current amount of money available: ${money}</p>
       <p>{advice}</p>  
     </div>
+    <p>Team Members</p>
+    <div>
+      {team.map((teamMember, idx) => (
+        <p>
+          <img src={teamMember.img} />
+          <li> Name: {teamMember.name}</li>
+          <li> Price: ${teamMember.price} </li>
+          <li> Strength: {teamMember.strength} </li>
+          <li> Agility: {teamMember.agility} </li>
+          {/* <button onClick = {() => handleAddFighter({zombieFighter})}>Add Fighter to Team</button> */}
+        </p>
+      ))}
+    </div>
+    <p>Fighters</p>
+    <div>
       {zombieFighters.map((zombieFighter, idx) => (
-        <p Fighters>
+        <p>
           <img src={zombieFighter.img} />
           <li> Name: {zombieFighter.name}</li>
           <li> Price: ${zombieFighter.price} </li>
@@ -114,6 +131,7 @@ const App = () => {
           <button onClick = {() => handleAddFighter({zombieFighter})}>Add Fighter to Team</button>
         </p>
       ))}
+    </div>
   </>
   );
 };
