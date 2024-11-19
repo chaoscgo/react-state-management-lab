@@ -90,11 +90,19 @@ const App = () => {
     }
   };
   
+  let advice;
+
+  if (team.length === 0) {
+    advice = 'Pick some team members';
+  } else {
+    advice = '';
+  };
 
   return (
   <>
     <div>
-      <li>Current amount of money available: ${money}</li>
+      <p>Current amount of money available: ${money}</p>
+      <p>{advice}</p>  
     </div>
       {zombieFighters.map((zombieFighter, idx) => (
         <p Fighters>
