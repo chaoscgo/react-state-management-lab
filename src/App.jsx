@@ -110,11 +110,11 @@ const App = () => {
     <div>
       {team.map((teamMember, idx) => (
         <p>
-          <img src={teamMember.img} />
-          <li> Name: {teamMember.name}</li>
-          <li> Price: ${teamMember.price} </li>
-          <li> Strength: {teamMember.strength} </li>
-          <li> Agility: {teamMember.agility} </li>
+          <img src={teamMember.zombieFighter.img} />
+          <li> Name: {teamMember.zombieFighter.name}</li>
+          <li> Price: ${teamMember.zombieFighter.price} </li>
+          <li> Strength: {teamMember.zombieFighter.strength} </li>
+          <li> Agility: {teamMember.zombieFighter.agility} </li>
           {/* <button onClick = {() => handleAddFighter({zombieFighter})}>Add Fighter to Team</button> */}
         </p>
       ))}
