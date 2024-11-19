@@ -82,6 +82,8 @@ const App = () => {
   const handleAddFighter = (newTeamMember) => {
     const newTeamArray = [...team, newTeamMember];
     setTeam(newTeamArray);
+    const newMoney = money - newTeamMember.zombieFighter.price;
+    setMoney(newMoney);
   };
   
 
