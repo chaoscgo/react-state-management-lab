@@ -87,6 +87,8 @@ const App = () => {
       setTeam(newTeamArray);
       const newMoney = money - newTeamMember.zombieFighter.price;
       setMoney(newMoney);
+      const newStrength = totalStrength + newTeamMember.zombieFighter.strength;
+      setTotalStrength(newStrength);
     } else {
       console.log('Not enough money');
     }
@@ -106,6 +108,7 @@ const App = () => {
       <p>Current amount of money available: ${money}</p>
       <p>{advice}</p>  
     </div>
+    <p> Current total strength of all Team Members: {totalStrength}</p>
     <p>Team Members</p>
     <div>
       {team.map((teamMember, idx) => (
