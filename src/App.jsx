@@ -97,39 +97,47 @@ const App = () => {
       console.log('Not enough money');
     }
   };
-  
-  let advice;
 
-  if (team.length === 0) {
-    advice = 'Pick some team members';
-  } else {
-    advice = '';
+  const handleRemoveFighter = (oldTeamMember, idx) => {
+      const newTeamArray = team.pop();
+      setTeam(newTeamArray);
+      const newMoney = money + oldTeamMember.zombieFighter.price;
+      setMoney(newMoney);
+      const newStrength = totalStrength - oldTeamMember.zombieFighter.strength;
+      setTotalStrength(newStrength);
+      const newAgility = totalAgility - oldTeamMember.zombieFighter.agility;
+      setTotalAgility(newAgility);
   };
-
-  return (
+  
+ return (
   <>
     <div>
       <p>Current amount of money available: ${money}</p>
-      <p>{advice}</p>  
+      <p> Current total strength of all Team Members: {totalStrength}</p>
+      <p> Current total agility of all Team Members: {totalAgility}</p>
+      <p>Team Members</p>
     </div>
-    <p> Current total strength of all Team Members: {totalStrength}</p>
-    <p> Current total agility of all Team Members: {totalAgility}</p>
-    <p>Team Members</p>
     <div>
-      {team.map((teamMember, idx) => (
-        <p>
-          <img src={teamMember.zombieFighter.img} />
-          <li> Name: {teamMember.zombieFighter.name}</li>
-          <li> Price: ${teamMember.zombieFighter.price} </li>
-          <li> Strength: {teamMember.zombieFighter.strength} </li>
-          <li> Agility: {teamMember.zombieFighter.agility} </li>
-          {/* <button onClick = {() => handleAddFighter({zombieFighter})}>Add Fighter to Team</button> */}
-        </p>
-      ))}
+    {team.length > 0 ? (
+       team.map((teamMember, index) => (
+       <div key={index}>
+      <img src={teamMember.zombieFighter.img} alt={teamMember.name} />
+      <ul>
+        <li>Name: {teamMember.zombieFighter.name}</li>
+        <li>Price: ${teamMember.zombieFighter.price}</li>
+        <li>Strength: {teamMember.zombieFighter.strength}</li>
+        <li>Agility: {teamMember.zombieFighter.agility}</li>
+      </ul>
+      <button onClick={() => handleRemoveFighter(teamMember)}>Remove Fighter from Team</button>
+    </div>
+  ))
+) : (
+  <p>Pick some team members</p>
+)}
     </div>
     <p>Fighters</p>
     <div>
-      {zombieFighters.map((zombieFighter, idx) => (
+      {zombieFighters.map((zombieFighter) => (
         <p>
           <img src={zombieFighter.img} />
           <li> Name: {zombieFighter.name}</li>
