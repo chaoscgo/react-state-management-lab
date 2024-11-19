@@ -79,25 +79,26 @@ const App = () => {
         },
   ]);
 
-  const addZombieFighter = (newZombieFighter) => {
-    const newZombieFightersArray = [...zombieFighters, newZombieFighter];
-    setZombieFighters(newZombieFightersArray);
-  };
+  // const addZombieFighter = (newZombieFighter) => {
+  //   const newZombieFightersArray = [...zombieFighters, newZombieFighter];
+  //   setZombieFighters(newZombieFightersArray);
+  // };
 
   return (
   <>
-    <button onClick = {() => addZombieFighter({zombieFighter})}>Add Zombie Fighter</button>
-    <ul>
+    <div>
+      <li>Current amount of money available: ${money}</li>
+    </div>
       {zombieFighters.map((zombieFighter, idx) => (
-        <li key={idx}>
+        <p Fighters>
           <img src={zombieFighter.img} />
-          <p> {zombieFighter.name}</p>
-          <p> {zombieFighters.price} </p>
-          <p> {zombieFighters.strength} </p>
-          <p> {zombieFighters.agility} </p>
-        </li>
+          <li> Name: {zombieFighter.name}</li>
+          <li> Price: ${zombieFighter.price} </li>
+          <li> Strength: {zombieFighter.strength} </li>
+          <li> Agility: {zombieFighter.agility} </li>
+          <button onClick = {() => addZombieFighter({newzombieFighter})}>Add Zombie Fighter</button>
+        </p>
       ))}
-    </ul>
   </>
   );
 };
