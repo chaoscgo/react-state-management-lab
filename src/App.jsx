@@ -80,10 +80,14 @@ const App = () => {
   ]);
 
   const handleAddFighter = (newTeamMember) => {
-    const newTeamArray = [...team, newTeamMember];
-    setTeam(newTeamArray);
-    const newMoney = money - newTeamMember.zombieFighter.price;
-    setMoney(newMoney);
+    if ((money - newTeamMember.zombieFighter.price) > 0) {
+      const newTeamArray = [...team, newTeamMember];
+      setTeam(newTeamArray);
+      const newMoney = money - newTeamMember.zombieFighter.price;
+      setMoney(newMoney);
+    } else {
+      console.log('Not enough money');
+    }
   };
   
 
