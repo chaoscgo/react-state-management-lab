@@ -8,6 +8,8 @@ const App = () => {
 
   const [totalStrength, setTotalStrength] = useState(0);
 
+  const [totalAgility, setTotalAgility] = useState(0);
+
   const [zombieFighters, setZombieFighters] = useState([
        {
           name: 'Survivor',
@@ -89,6 +91,8 @@ const App = () => {
       setMoney(newMoney);
       const newStrength = totalStrength + newTeamMember.zombieFighter.strength;
       setTotalStrength(newStrength);
+      const newAgility = totalAgility + newTeamMember.zombieFighter.agility;
+      setTotalAgility(newAgility);
     } else {
       console.log('Not enough money');
     }
@@ -109,6 +113,7 @@ const App = () => {
       <p>{advice}</p>  
     </div>
     <p> Current total strength of all Team Members: {totalStrength}</p>
+    <p> Current total agility of all Team Members: {totalAgility}</p>
     <p>Team Members</p>
     <div>
       {team.map((teamMember, idx) => (
