@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import './App.css'
 
 const App = () => {
 
@@ -84,50 +85,62 @@ const App = () => {
   ]);
 
   const handleAddFighter = (newTeamMember) => {
-    if ((money - newTeamMember.zombieFighter.price) > 0) {
+    if (money - newTeamMember.price >= 0) {
       const newTeamArray = [...team, newTeamMember];
       setTeam(newTeamArray);
-      const newMoney = money - newTeamMember.zombieFighter.price;
+      const newMoney = money - newTeamMember.price;
       setMoney(newMoney);
-      const newStrength = totalStrength + newTeamMember.zombieFighter.strength;
+      const newStrength = totalStrength + newTeamMember.strength;
       setTotalStrength(newStrength);
-      const newAgility = totalAgility + newTeamMember.zombieFighter.agility;
+      const newAgility = totalAgility + newTeamMember.agility;
       setTotalAgility(newAgility);
+      console.log(team);
     } else {
       console.log('Not enough money');
     }
   };
 
-  const handleRemoveFighter = (oldTeamMember, idx) => {
-      const newTeamArray = team.pop();
-      setTeam(newTeamArray);
-      const newMoney = money + oldTeamMember.zombieFighter.price;
+  const handleRemoveFighter = (oldTeamMember) => {
+    const newTeamArray = team.findIndex((teamMember) => {
+      return teamMember === oldTeamMember;
+    });
+
+     if (newTeamArray !== -1) {
+      const newTeam = [...team]
+      newTeam.splice(newTeamArray, 1)
+      setTeam(newTeam)
+      const updatedZombies = [...zombieFighters, oldTeamMember]
+      setZombieFighters(updatedZombies)
+
+      const newMoney = money + oldTeamMember.price;
       setMoney(newMoney);
-      const newStrength = totalStrength - oldTeamMember.zombieFighter.strength;
+      const newStrength = totalStrength - oldTeamMember.strength;
       setTotalStrength(newStrength);
-      const newAgility = totalAgility - oldTeamMember.zombieFighter.agility;
+      const newAgility = totalAgility - oldTeamMember.agility;
       setTotalAgility(newAgility);
+     }  
   };
-  
+    
  return (
   <>
+    <h1>Zombie Fighters</h1>
     <div>
-      <p>Current amount of money available: ${money}</p>
-      <p> Current total strength of all Team Members: {totalStrength}</p>
-      <p> Current total agility of all Team Members: {totalAgility}</p>
-      <p>Team Members</p>
+      <h2>Money: ${money}</h2>
+      <h2> Team Strength: {totalStrength}</h2>
+      <h2> Team Agility: {totalAgility}</h2>
+      <h2>Team</h2>
     </div>
-    <div>
+    <div className = 'team'>
     {team.length > 0 ? (
        team.map((teamMember, index) => (
        <div key={index}>
-      <img src={teamMember.zombieFighter.img} alt={teamMember.name} />
-      <ul>
-        <li>Name: {teamMember.zombieFighter.name}</li>
-        <li>Price: ${teamMember.zombieFighter.price}</li>
-        <li>Strength: {teamMember.zombieFighter.strength}</li>
-        <li>Agility: {teamMember.zombieFighter.agility}</li>
-      </ul>
+      <p>
+        <img src={teamMember.img} alt={teamMember.name} />
+        <li>Name: {teamMember.name}</li>
+        <li>Price: ${teamMember.price}</li>
+        <li>Strength: {teamMember.strength}</li>
+        <li>Agility: {teamMember.agility}</li>
+      </p>
       <button onClick={() => handleRemoveFighter(teamMember)}>Remove Fighter from Team</button>
     </div>
   ))
@@ -135,16 +148,16 @@ const App = () => {
   <p>Pick some team members</p>
 )}
     </div>
-    <p>Fighters</p>
-    <div>
+    <h2>Fighters</h2>
+    <div className = 'fighters'>
       {zombieFighters.map((zombieFighter) => (
         <p>
-          <img src={zombieFighter.img} />
+          <img src={zombieFighter.img} alt={zombieFighter.name} />
           <li> Name: {zombieFighter.name}</li>
           <li> Price: ${zombieFighter.price} </li>
           <li> Strength: {zombieFighter.strength} </li>
           <li> Agility: {zombieFighter.agility} </li>
-          <button onClick = {() => handleAddFighter({zombieFighter})}>Add Fighter to Team</button>
+          <button onClick = {() => handleAddFighter(zombieFighter)}>Add Fighter to Team</button>
         </p>
       ))}
     </div>
