@@ -131,22 +131,22 @@ const App = () => {
       <h2>Team</h2>
     </div>
     <div className = 'team'>
-    {team.length > 0 ? (
+     {team.length > 0 ? (
        team.map((teamMember, index) => (
-       <div key={index}>
-      <p>
-        <img src={teamMember.img} alt={teamMember.name} />
-        <li>Name: {teamMember.name}</li>
-        <li>Price: ${teamMember.price}</li>
-        <li>Strength: {teamMember.strength}</li>
-        <li>Agility: {teamMember.agility}</li>
-      </p>
-      <button onClick={() => handleRemoveFighter(teamMember)}>Remove Fighter from Team</button>
-    </div>
-  ))
-) : (
-  <p>Pick some team members</p>
-)}
+        <div key={index}>
+          <p>
+            <img src={teamMember.img} alt={teamMember.name} />
+            <li>Name: {teamMember.name}</li>
+            <li>Price: ${teamMember.price}</li>
+           <li>Strength: {teamMember.strength}</li>
+            <li>Agility: {teamMember.agility}</li>
+           </p>
+           <button onClick={() => handleRemoveFighter(teamMember)}>Remove Fighter from Team</button>
+        </div>
+       ))
+     ) : (
+       <p>Pick some team members</p>
+     )}
     </div>
     <h2>Fighters</h2>
     <div className = 'fighters'>
